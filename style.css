@@ -1,0 +1,14 @@
+body {
+    background-color: #EEEEFF;
+}
+
+/*Links Style*/
+a {
+    color: #000044;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+}
+/*End of Links Style*/
