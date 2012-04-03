@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<results>
+  <result id="6548">
+    <hometeam>
+      <name>Dantooine Destroyers</name>
+      <score>6</score>
+    </hometeam>
+    <awayteam>
+      <name>Wayland Warriors</name>
+      <score>0</score>
+    </awayteam>
+  </result>
+  <result id="6549">
+    <hometeam>
+      <name>Coruscant Crusaders</name>
+      <score>2</score>
+    </hometeam>
+    <awayteam>
+      <name>Tatooine Travellers</name>
+      <score>2</score>
+    </awayteam>
+  </result>
+  <result id="6550">
+    <hometeam>
+      <name>Romulas Rejects</name>
+      <score>0</score>
+    </hometeam>
+    <awayteam>
+      <name>Tottenham Skaro</name>
+      <score>4</score>
+    </awayteam>
+  </result>
+  <result id="6551">
+    <hometeam>
+      <name>Dynamo New Earth</name>
+      <score>5</score>
+    </hometeam>
+    <awayteam>
+      <name>Dagobah Dragons</name>
+      <score>2</score>
+    </awayteam>
+  </result>
+  <result id="6552">
+    <hometeam>
+      <name>Rura Penthe Massive</name>
+      <score>2</score>
+    </hometeam>
+    <awayteam>
+      <name>Cardassia Prime Wanderers</name>
+      <score>4</score>
+    </awayteam>
+  </result>
+</results>

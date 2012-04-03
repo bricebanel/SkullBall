@@ -1,0 +1,170 @@
+<html>
+<head>
+	<title>SkySports - Skull Ball</title>
+
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" src="upclick-min.js"></script>
+		<script type="text/javascript" src="skullball.js"></script>
+</head>
+	
+
+<body>	
+	<center>
+	<a href="http://www.skysports.com/"><img src="http://skyisb.jamesswright.co.uk/img/site-logo.png" /></a>
+	<h2>'Intergalactic Skull Ball' League Table</h2>
+	
+	<table border="1" cellpadding="2" cellspacing="0">
+	<th>Team</th>
+	<th width="70">Played</th>
+	<th width="70">Won</th>
+	<th width="70">Drawn</th>
+	<th width="70">Lost</th>
+	<th width="70">Goals</th>
+	<th width="70">Overall Points</th>
+	
+		<tr><td id="1"></td>
+			<td id="1p"></td>
+			<td id="1w"></td>
+			<td id="1d"></td>
+			<td id="1l"></td>
+			<td id="1g"></td>
+			<td id="1pts"></td></tr>
+		<tr><td id="2"></td>
+			<td id="2p"></td>
+			<td id="2w"></td>
+			<td id="2d"></td>
+			<td id="2l"></td>
+			<td id="2g"></td>
+			<td id="2pts"></td></tr>
+		<tr><td id="3"></td>
+			<td id="3p"></td>
+			<td id="3w"></td>
+			<td id="3d"></td>
+			<td id="3l"></td>
+			<td id="3g"></td>
+			<td id="3pts"></td></tr>
+		<tr><td id="4"></td>
+			<td id="4p"></td>
+			<td id="4w"></td>
+			<td id="4d"></td>
+			<td id="4l"></td>
+			<td id="4g"></td>
+			<td id="4pts"></td></tr>
+		<tr><td id="5"></td>
+			<td id="5p"></td>
+			<td id="5w"></td>
+			<td id="5d"></td>
+			<td id="5l"></td>
+			<td id="5g"></td>
+			<td id="5pts"></td></tr>
+		<tr><td id="6"></td>
+			<td id="6p"></td>
+			<td id="6w"></td>
+			<td id="6d"></td>
+			<td id="6l"></td>
+			<td id="6g"></td>
+			<td id="6pts"></td></tr>
+		<tr><td id="7"></td>
+			<td id="7p"></td>
+			<td id="7w"></td>
+			<td id="7d"></td>
+			<td id="7l"></td>
+			<td id="7g"></td>
+			<td id="7pts"></td></tr>
+		<tr><td id="8"></td>
+			<td id="8p"></td>
+			<td id="8w"></td>
+			<td id="8d"></td>
+			<td id="8l"></td>
+			<td id="8g"></td>
+			<td id="8pts"></td></tr>
+		<tr><td id="9"></td>
+			<td id="9p"></td>
+			<td id="9w"></td>
+			<td id="9d"></td>
+			<td id="9l"></td>
+			<td id="9g"></td>
+			<td id="9pts"></td></tr>
+		<tr><td id="10"></td>
+			<td id="10p"></td>
+			<td id="10w"></td>
+			<td id="10d"></td>
+			<td id="10l"></td>
+			<td id="10g"></td>
+			<td id="10pts"></td></tr>
+</table>
+
+	<input type="button" id="uploader" value="Upload Results File">
+	<button type="button" onclick="loadResults('results.xml')">Load Results</button><br>
+	
+	<p>Developed By: <a href="http://www.doc.ic.ac.uk/~bb211/">Brice Banel</a></p>
+	
+	</center>
+	
+	<script type="text/javascript">
+
+		/**
+		 * Script executed as the page loads to input the data from 'rankings2.xml' into the League Table
+		 */
+
+		if (window.XMLHttpRequest){ //For IE7+, Mozilla, Chrome, Opera, Safari
+				xhttp = new XMLHttpRequest();
+			}
+			else { //for IE 5/6
+				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xhttp.open("GET",'rankings2.xml',false);
+			xhttp.send();
+			doc = xhttp.responseXML;
+	
+			var teams = new Array(
+				new team("1"),	new team("2"),	new team("3"),	new team("4"),
+				new team("5"),	new team("6"),	new team("7"),	new team("8"),
+				new team("9"),	new team("10")
+			);
+	
+			for (var i=0 ; i<10 ; i++){
+				teamName = doc.getElementsByTagName("name")[i];
+				teams[i].name = document.getElementById(i+1).innerHTML = teamName.childNodes[0].nodeValue;
+				teamPlayed = get_nextsibling(teamName);
+				teams[i].played = document.getElementById(i+1+"p").innerHTML = parseInt(teamPlayed.childNodes[0].nodeValue);
+				teamWon = get_nextsibling(teamPlayed);
+				teams[i].won = document.getElementById(i+1+"w").innerHTML = parseInt(teamWon.childNodes[0].nodeValue);
+				teamDrawn = get_nextsibling(teamWon);
+				teams[i].drawn = document.getElementById(i+1+"d").innerHTML = parseInt(teamDrawn.childNodes[0].nodeValue);
+				teamLost = get_nextsibling(teamDrawn);
+				teams[i].lost = document.getElementById(i+1+"l").innerHTML = parseInt(teamLost.childNodes[0].nodeValue);
+				teamGoals = get_nextsibling(teamLost);
+				teams[i].goals = document.getElementById(i+1+"g").innerHTML = parseInt(teamGoals.childNodes[0].nodeValue);
+				teamPoints = get_nextsibling(teamGoals);
+				teams[i].points = document.getElementById(i+1+"pts").innerHTML = parseInt(teamPoints.childNodes[0].nodeValue);
+			}
+			
+			saveRankings();
+
+		/**
+		 * Script allowing the 'Upload Results File' to work	
+		 */
+	
+   		var uploader = document.getElementById('uploader');
+	
+   		upclick(
+     		{
+      		element: uploader,
+      		action: 'upload.php', 
+      		onstart:
+      		  function(filename)
+      		  {
+      		    alert('Start upload: '+filename);
+      		  },
+      		oncomplete:
+      		  function(response_data) 
+      		  {
+      		    alert(response_data);
+      		  }
+     		});
+
+	</script>
+	
+	</body>
+</html>
