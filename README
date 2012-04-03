@@ -1,0 +1,55 @@
+The 'Intergalactic Skull Ball' League Table can be found at:
+  www.doc.ic.ac.uk/~bb211/SkullBall/LeagueTable.html
+and the permissions for the other files used have been set to visible for everyone at:
+	www.doc.ic.ac.uk/~bb211/SkullBall/
+
+This programme should be compatible for Firefox, Chrome and Opera. Some problems were encountered with
+the upload function using IE8.
+I recommend Chrome for this website as I carried out all the tests using this browser.
+	
+Contents of 'SkullBall' directory:
+	LeagueTable.html
+		HTML page showing the League Table.
+		When the page loads, the table takes data from the 'rankings2.xml' file that keeps record of the
+		current League rankings.
+		The 'Upload Results File' allows the user to upload a file to the server that will be renamed
+		'results.xml'. 
+		To be able to observe the table change, the user needs to click the 'Load Results' button and 
+		refresh the page.
+		The same results file can be used any number of times to update the table, mainly for testing
+		purposes (having to produce an XML file + uploading it + loading its contents is a bit tedious
+		only to debug!).
+		The teams with the most overall points appear at the top of the table and the teams with the least 
+		overall points appear at the bottom of the table (The team with the highest number of goals is placed
+		highest in case of even number of points). 
+		
+	rankings.xml
+		XML file used to re-initialise the table (i.e. all teams having played 0 game)
+		It can be invoked from 'LeagueTable.html' around line 111 in the xhttp.open() function call
+		Do not forget to replace it with 'rankings2.xml' after the table is re-initialised as nothing
+			is updated in this file (i.e. all the teams will always have 0 pts)
+	
+	rankings2.xml
+		XML file used to record the current rankings.
+		It is loaded along with the html page (around line 111 in the xhttp.open() function call).
+		It is overwritten with the new rankings as soon as the new results are loaded (i.e. after clicking
+		the 'Load Results' button on the 'LeagueTable.html' page).
+		
+	skullball.js
+		JScript file that contains all the necessary functions (except the upload!) needed by 'LeagueTable.html' file.
+	
+	upclick-min.js
+		JScript file that contains the function needed to upload a file. It's an open source project on which
+		more information can be	found at: http://code.google.com/p/upload-at-click/
+	
+	upload.php
+		PHP file that contains the Server-side script needed for the upload function to work properly.
+		Any file that is uploaded using the 'Upload Results File' button is placed at the root of the 
+		directory for easy access and is renamed 'results.xml'.
+	
+	write.php
+		PHP file that contains the script needed to overwrite the 'rankings2.xml' file that keeps
+		a record of the current rankings.
+		
+		
+Do not hesitate to contact me if ever you have any questions: bricebanel@gmail.com
