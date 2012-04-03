@@ -153,13 +153,11 @@
       		element: uploader,
       		action: 'upload.php', 
       		onstart:
-      		  function(filename)
-      		  {
+      		  function(filename){
       		    alert('Start upload: '+filename);
       		  },
       		oncomplete:
-      		  function(response_data) 
-      		  {
+      		  function(response_data) {
       		    alert(response_data);
       		  }
      		});
